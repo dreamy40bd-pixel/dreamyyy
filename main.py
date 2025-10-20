@@ -3,7 +3,6 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
 from datetime import datetime
 
-# ⚠️ Hardcoded token for testing only
 BOT_TOKEN = "8225680034:AAHaKFH71PbrakuD7bA1UbjYvwAzDs6muuE"
 
 # Cooldown settings
