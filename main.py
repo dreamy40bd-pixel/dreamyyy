@@ -2,10 +2,9 @@ import time
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
 from datetime import datetime
-import os
 
-# Get your bot token from Render environment variable
-BOT_TOKEN = os.getenv 8225680034:AAHaKFH71PbrakuD7bA1UbjYvwAzDs6muuE
+# ⚠️ Hardcoded token for testing only
+BOT_TOKEN = "8225680034:AAHaKFH71PbrakuD7bA1UbjYvwAzDs6muuE"
 
 # Cooldown settings
 last_message_time = {}
@@ -25,17 +24,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if all_times:
         last_sent = max(all_times)
         if (now - last_sent).total_seconds() < COOLDOWN_SECONDS:
-            try:
-                # Delete the message that broke the cooldown
-                await update.message.delete()
-                # Send a temporary warning message
-                await context.bot.send_message(
-                    chat_id=chat_id,
-                    text=f"⚠️ Please wait {COOLDOWN_SECONDS} seconds before sending another message.",
-                    reply_to_message_id=update.message.message_id
-                )
-            except Exception as e:
-                print("Error handling cooldown:", e)
+            # Just ignore messages during cooldown (no delete, no warning)
             return
 
     # Update last message time for this user
