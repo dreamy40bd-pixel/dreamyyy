@@ -34,4 +34,5 @@ app = ApplicationBuilder().token(BOT_TOKEN).build()
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
 print("🤖 Cooldown bot is running...")
-app.run_polling()
+# Fixed Conflict issue
+app.run_polling(drop_pending_updates=True)
